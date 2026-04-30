@@ -96,7 +96,11 @@ app.get('/api/suggestions', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
-    console.log(`Make sure to add your API key to the .env file!`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Server is running at http://localhost:${PORT}`);
+        console.log(`Make sure to add your API key to the .env file!`);
+    });
+}
+
+module.exports = app;
